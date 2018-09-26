@@ -1,6 +1,6 @@
-/** @defgroup ethernet_mac_stm32fxx7_defines MAC STM32Fxx7 Defines
+/** @defgroup ethernet_mac_stm32msp432e4xx_defines MAC MSP432E4xx Defines
  *
- * @brief <b>Defined Constants and Types for the Ethernet MAC for STM32Fxx7
+ * @brief <b>Defined Constants and Types for the Ethernet MAC for MSP432E4xx
  * chips</b>
  *
  * @ingroup ETH
@@ -34,6 +34,8 @@
 
 #ifndef LIBOPENCM3_ETHERNET_H
 #define LIBOPENCM3_ETHERNET_H
+
+/**@{*/
 
 #include <libopencm3/msp432/e4/memorymap.h>
 #include <libopencm3/cm3/common.h>
@@ -190,7 +192,7 @@
 #define EMAC_EPHYIM                 MMIO32(EMAC_BASE + 0xFD4)
 /** Ethernet PHY Masked Interrupt Status and Clear */
 #define EMAC_EPHYMISC               MMIO32(EMAC_BASE + 0xFD8)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emaccfg_values EMAC_EMACCFG Values
@@ -275,7 +277,7 @@
 #define EMAC_EMACCFG_PRELEN_5       (0x1)
 /** Preamble Length for Transmit Frames - 3 bytes */
 #define EMAC_EMACCFG_PRELEN_3       (0x2)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacframefltr_values EMAC_EMACFRAMEFLTR Values
@@ -308,7 +310,7 @@
 #define EMAC_EMACFRAMEFLTR_HUC          (1 << 1)
 /** Promiscuous Mode */
 #define EMAC_EMACFRAMEFLTR_PR           (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emachashtblh_values EMAC_EMACHASHTBLH Values
  * @ingroup ethernet_registers
@@ -316,7 +318,7 @@
 @{*/
 /** Hash Table High */
 #define EMAC_EMACHASHTBLH_HTH           (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emachashtbll_values EMAC_EMACHASHTBLL Values
  * @ingroup ethernet_registers
@@ -324,7 +326,7 @@
 @{*/
 /** Hash Table Low */
 #define EMAC_EMACHASHTBLL_HTL           (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacmiiaddr_values EMAC_EMACMIIADDR Values
  * @ingroup ethernet_registers
@@ -358,7 +360,7 @@
 #define EMAC_EMACMIIADDR_MIIW       (1 << 1)
 /** MII Busy */
 #define EMAC_EMACMIIADDR_MIIB       (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacmiidata_values EMAC_EMACMIIDATA Values
  * @ingroup ethernet_registers
@@ -368,7 +370,7 @@
 #define EMAC_EMACMIIDATA_DATA_MASK   (0xFFFF)
 /** Ethernet MAC MII Data */
 #define EMAC_EMACMIIDATA_DATA(x)     (x)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacflowctl_values EMAC_EMACFLOWCTL Values
  * @ingroup ethernet_registers
@@ -390,7 +392,7 @@
 #define EMAC_EMACFLOWCTL_TFE        (1 << 1)
 /** Flow Control Busy or Back-pressure Activate */
 #define EMAC_EMACFLOWCTL_FCBBPA     (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacvlantg_values EMAC_EMACVLANTG Values
  * @ingroup ethernet_registers
@@ -408,7 +410,7 @@
 #define EMAC_EMACVLANTG_VL_MASK     (0xFFFF)
 /** VLAN Tag Identifier for Receive Frames */
 #define EMAC_EMACVLANTG_VL(x)       (x)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacstatus_values EMAC_EMACSTATUS Values
  * @ingroup ethernet_registers
@@ -482,7 +484,7 @@ full-duplex mode) */
 #define EMAC_EMACSTATUS_RFCFC       (0x3 << EMAC_EMACSTATUS_RFCFC_SHIFT)
 /** MAC MII Receive Protocol Engine Status */
 #define EMAC_EMACSTATUS_RPE         (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacrwuff_values EMAC_EMACRWUFF Values
  * @ingroup ethernet_registers
@@ -492,7 +494,7 @@ full-duplex mode) */
 #define EMAC_EMACRWUFF_WAKEUPFIL_MASK    (0xFFFFFFFF)
 /** Remote Wake-Up Frame Filter */
 #define EMAC_EMACRWUFF_WAKEUPFIL(x)      (x)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacpmtctlstat_values EMAC_EMACPMTCTLSTAT Values
  * @ingroup ethernet_registers
@@ -518,7 +520,7 @@ full-duplex mode) */
 #define EMAC_EMACPMTCTLSTAT_MGKPKTEN        (1 << 1)
 /** Power Down */
 #define EMAC_EMACPMTCTLSTAT_PWRDWN          (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emaclpictlstat_values EMAC_EMACLPICTLSTAT Values
  * @ingroup ethernet_registers
@@ -544,7 +546,7 @@ full-duplex mode) */
 #define EMAC_EMACLPICTLSTAT_TLPIEX          (1 << 1)
 /** Transmit LPI Entry */
 #define EMAC_EMACLPICTLSTAT_TLPIEN          (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emaclpitimerctrl_values EMAC_EMACLPITIMERCTRL Values
  * @ingroup ethernet_registers
@@ -560,7 +562,7 @@ full-duplex mode) */
 #define EMAC_EMACLPITIMERCTRL_TWT_MASK  (0xFFFF)
 /** LPI TW Timer */
 #define EMAC_EMACLPITIMERCTRL_TWT(x)    (x)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacris_values EMAC_EMACRIS Values
  * @ingroup ethernet_registers
@@ -578,7 +580,7 @@ full-duplex mode) */
 #define EMAC_EMACRIS_MMC        (1 << 4)
 /** PMT Interrupt Status */
 #define EMAC_EMACRIS_PMT        (1 << 3)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacim_values EMAC_EMACIM Values
  * @ingroup ethernet_registers
@@ -590,7 +592,7 @@ full-duplex mode) */
 #define EMAC_EMACIM_TSI         (1 << 9)
 /** PMT Interrupt Mask */
 #define EMAC_EMACIM_PMT         (1 << 3)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacaddrh_values EMAC_EMACADDRxH Values
@@ -607,7 +609,7 @@ full-duplex mode) */
 #define EMAC_EMACADDRxH_MBC              (0x3F << EMAC_EMACADDRH_MBC_SHIFT)
 /** MAC Address [47:32] */
 #define EMAC_EMACADDRxH_ADDRHI           (0xFFFF)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacaddrl_values EMAC_EMACADDRL Values
@@ -618,7 +620,7 @@ full-duplex mode) */
 #define EMAC_EMACADDRxL_ADDRLO           (0xFFFFFFFF)
 /** i=[0..3] */
 #define EMAC_EMACADDRL(i)           MMIO32(EMAC_BASE + 0x44+(i)*8)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /* i=[0..3] */
@@ -634,7 +636,7 @@ full-duplex mode) */
 #define EMAC_EMACWDOGTO_PWE         (1 << 16)
 /** Watchdog Time-out */
 #define EMAC_EMACWDOGTO_WTO         (0x3FFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacmmcctrl_values EMAC_EMACMMCCTRL Values
  * @ingroup ethernet_registers
@@ -654,7 +656,7 @@ full-duplex mode) */
 #define EMAC_EMACMMCCTRL_CNTSTPRO       (1 << 1)
 /** Counters Reset */
 #define EMAC_EMACMMCCTRL_CNTRST         (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacmmcrxris_values EMAC_EMACMMCRXRIS Values
  * @ingroup ethernet_registers
@@ -668,7 +670,7 @@ full-duplex mode) */
 #define EMAC_EMACMMCRXRIS_CRCERR        (1 << 5)
 /** MMC Receive Good Bad Frame Counter Interrupt Status */
 #define EMAC_EMACMMCRXRIS_GBF           (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacmmctxris_values EMAC_EMACMMCTXRIS Values
  * @ingroup ethernet_registers
@@ -682,7 +684,7 @@ full-duplex mode) */
 #define EMAC_EMACMMCTXRIS_SCOLLGF       (1 << 14)
 /** MMC Transmit Good Bad Frame Counter Interrupt Status */
 #define EMAC_EMACMMCTXRIS_GBF           (1 << 1)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacmmcrxim_values EMAC_EMACMMCRXIM Values
  * @ingroup ethernet_registers
@@ -696,7 +698,7 @@ full-duplex mode) */
 #define EMAC_EMACMMCRXIM_CRCERR         (1 << 5)
 /** MMC Receive Good Bad Frame Counter Interrupt Mask */
 #define EMAC_EMACMMCRXIM_GBF            (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacmmctxim_values EMAC_EMACMMCTXIM Values
  * @ingroup ethernet_registers
@@ -710,7 +712,7 @@ full-duplex mode) */
 #define EMAC_EMACMMCTXIM_SCOLLGF        (1 << 14)
 /** MMC Transmit Good Bad Frame Counter Interrupt Mask */
 #define EMAC_EMACMMCTXIM_GBF            (1 << 1)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactxcntgb_values EMAC_EMACTXCNTGB Values
  * @ingroup ethernet_registers
@@ -718,7 +720,7 @@ full-duplex mode) */
 @{*/
 /** Transmit Frame Count for Good and Bad Frames */
 #define EMAC_EMACTXCNTGB_TXFRMGB        (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactxcntscol_values EMAC_EMACTXCNTSCOL Values
  * @ingroup ethernet_registers
@@ -726,7 +728,7 @@ full-duplex mode) */
 @{*/
 /** Transmit Frame Count for Frames Transmitted after Single Collision */
 #define EMAC_EMACTXCNTSCOL_TXSNGLCOLG   (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactxcntmcol_values EMAC_EMACTXCNTMCOL Values
  * @ingroup ethernet_registers
@@ -734,7 +736,7 @@ full-duplex mode) */
 @{*/
 /** Transmit Frame Count for Frames Transmitted after Multiple Collisions */
 #define EMAC_EMACTXCNTMCOL_TXMULTCOLG   (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactxoctcntg_values EMAC_EMACTXOCTCNTG Values
  * @ingroup ethernet_registers
@@ -742,7 +744,7 @@ full-duplex mode) */
 @{*/
 /** Transmit Octet Count Good */
 #define EMAC_EMACTXOCTCNTG_TXOCTG       (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacrxcntgb_values EMAC_EMACRXCNTGB Values
  * @ingroup ethernet_registers
@@ -750,7 +752,7 @@ full-duplex mode) */
 @{*/
 /** Receive Frame Count for Good and Bad Frames */
 #define EMAC_EMACRXCNTGB_RXFRMGB        (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacrxcntcrcerr_values EMAC_EMACRXCNTCRCERR Values
  * @ingroup ethernet_registers
@@ -758,7 +760,7 @@ full-duplex mode) */
 @{*/
 /** Receive Frame Count for CRC Error Frames */
 #define EMAC_EMACRXCNTCRCERR_RXCRCERR   (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacrxcntalgnerr_values EMAC_EMACRXCNTALGNERR Values
  * @ingroup ethernet_registers
@@ -766,7 +768,7 @@ full-duplex mode) */
 @{*/
 /** Receive Frame Count for Alignment Error Frames */
 #define EMAC_EMACRXCNTALGNERR_RXALGNERR (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacrxcntguni_values EMAC_EMACRXCNTGUNI Values
  * @ingroup ethernet_registers
@@ -774,7 +776,7 @@ full-duplex mode) */
 @{*/
 /** Receive Frame Count for Good Unicast Frames */
 #define EMAC_EMACRXCNTGUNI_RXUCASTG     (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacvlnincrep_values EMAC_EMACVLNINCREP Values
@@ -791,7 +793,7 @@ full-duplex mode) */
 #define EMAC_EMACVLNINCREP_VLC          (0x3 << EMAC_EMACVLNINCREP_VLC_SHIFT)
 /**  */
 #define EMAC_EMACVLNINCREP_VLT          (0xFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacvlanhash_values EMAC_EMACVLANHASH Values
  * @ingroup ethernet_registers
@@ -799,7 +801,7 @@ full-duplex mode) */
 @{*/
 /** VLAN Hash Table */
 #define EMAC_EMACVLANHASH_VLHT          (0xFFFF)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emactimstctrl_values EMAC_EMACTIMSTCTRL Values
@@ -840,7 +842,7 @@ full-duplex mode) */
 #define EMAC_EMACTIMSTCTRL_TSFCUPDT     (1 << 1)
 /** Timestamp Enable */
 #define EMAC_EMACTIMSTCTRL_TSEN         (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacsubsecinc_values EMAC_EMACSUBSECINC Values
  * @ingroup ethernet_registers
@@ -848,7 +850,7 @@ full-duplex mode) */
 @{*/
 /** Sub-second Increment Value */
 #define EMAC_EMACSUBSECINC_SSINC        (0xFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactimsec_values EMAC_EMACTIMSEC Values
  * @ingroup ethernet_registers
@@ -856,7 +858,7 @@ full-duplex mode) */
 @{*/
 /** Timestamp Second */
 #define EMAC_EMACTIMSEC_TSS             (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactimnano_values EMAC_EMACTIMNANO Values
  * @ingroup ethernet_registers
@@ -864,7 +866,7 @@ full-duplex mode) */
 @{*/
 /** Timestamp Sub-Seconds */
 #define EMAC_EMACTIMNANO_TSSS           (0x7FFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactimsecu_values EMAC_EMACTIMSECU Values
  * @ingroup ethernet_registers
@@ -872,7 +874,7 @@ full-duplex mode) */
 @{*/
 /** Timestamp Second */
 #define EMAC_EMACTIMSECU_TSS            (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactimnanou_values EMAC_EMACTIMNANOU Values
  * @ingroup ethernet_registers
@@ -882,7 +884,7 @@ full-duplex mode) */
 #define EMAC_EMACTIMNANOU_ADDSUB        (1 << 31)
 /** Timestamp Sub-Second */
 #define EMAC_EMACTIMNANOU_TSSS          (0x7FFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactimadd_values EMAC_EMACTIMADD Values
  * @ingroup ethernet_registers
@@ -890,7 +892,7 @@ full-duplex mode) */
 @{*/
 /** Timestamp Addend Register */
 #define EMAC_EMACTIMADD_TSAR            (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactargsec_values EMAC_EMACTARGSEC Values
  * @ingroup ethernet_registers
@@ -898,7 +900,7 @@ full-duplex mode) */
 @{*/
 /** Target Time Seconds Register */
 #define EMAC_EMACTARGSEC_TSTR           (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactargnano_values EMAC_EMACTARGNANO Values
  * @ingroup ethernet_registers
@@ -908,7 +910,7 @@ full-duplex mode) */
 #define EMAC_EMACTARGNANO_TRGTBUSY      (1 << 31)
 /** Target Timestamp Low Register */
 #define EMAC_EMACTARGNANO_TTSLO         (0x7FFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emachwordsec_values EMAC_EMACHWORDSEC Values
  * @ingroup ethernet_registers
@@ -916,7 +918,7 @@ full-duplex mode) */
 @{*/
 /** Target Timestamp Higher Word Register */
 #define EMAC_EMACHWORDSEC_TSHWR         (0xFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactimstat_values EMAC_EMACTIMSTAT Values
  * @ingroup ethernet_registers
@@ -926,7 +928,7 @@ full-duplex mode) */
 #define EMAC_EMACTIMSTAT_TSTARGT        (1 << 1)
 /** Timestamp Seconds Overflow */
 #define EMAC_EMACTIMSTAT_TSSOVF         (1 << 0)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacppsctrl_values EMAC_EMACPPSCTRL Values
@@ -947,7 +949,7 @@ full-duplex mode) */
 #define EMAC_EMACPPSCTRL_PPSEN0         (1 << 4)
 /**  */
 #define EMAC_EMACPPSCTRL_PPSCTRL        (0xF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacpps0intvl_values EMAC_EMACPPS0INTVL Values
  * @ingroup ethernet_registers
@@ -955,7 +957,7 @@ full-duplex mode) */
 @{*/
 /** PPS0 Output Signal Interval */
 #define EMAC_EMACPPS0INTVL_PPS0INT      (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacpps0width_values EMAC_EMACPPS0WIDTH Values
  * @ingroup ethernet_registers
@@ -963,7 +965,7 @@ full-duplex mode) */
 @{*/
 /** EN0PPS Output Signal Width */
 #define EMAC_EMACPPS0WIDTH_PPS0WIDTH    (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacdmabusmod_values EMAC_EMACDMABUSMOD Values
@@ -1014,7 +1016,7 @@ full-duplex mode) */
 #define EMAC_EMACDMABUSMOD_DA           (1 << 1)
 /** DMA Software Reset */
 #define EMAC_EMACDMABUSMOD_SWR          (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emactxpolld_values EMAC_EMACTXPOLLD Values
  * @ingroup ethernet_registers
@@ -1022,7 +1024,7 @@ full-duplex mode) */
 @{*/
 /** Transmit Poll Demand */
 #define EMAC_EMACTXPOLLD_TPD            (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacrxpolld_values EMAC_EMACRXPOLLD Values
  * @ingroup ethernet_registers
@@ -1030,7 +1032,7 @@ full-duplex mode) */
 @{*/
 /** Receive Poll Demand */
 #define EMAC_EMACRXPOLLD_RPD            (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacrxdladdr_values EMAC_EMACRXDLADDR Values
@@ -1041,7 +1043,7 @@ full-duplex mode) */
 #define EMAC_EMACRXDLADDR_STRXLIST_SHIFT    (2)
 /** Start of Receive List */
 #define EMAC_EMACRXDLADDR_STRXLIST          (0x3FFFFFFF << EMAC_EMACRXDLADDR_STRXLIST_SHIFT)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emactxdladdr_values EMAC_EMACTXDLADDR Values
@@ -1052,7 +1054,7 @@ full-duplex mode) */
 #define EMAC_EMACTXDLADDR_TXDLADDR_SHIFT    (2)
 /** Start of Transmit List Base Address */
 #define EMAC_EMACTXDLADDR_TXDLADDR          (0x3FFFFFFF << EMAC_EMACTXDLADDR_TXDLADDR_SHIFT)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacdmaris_values EMAC_EMACDMARIS Values
@@ -1107,7 +1109,7 @@ full-duplex mode) */
 #define EMAC_EMACDMARIS_TPS             (1 << 1)
 /** Transmit Interrupt */
 #define EMAC_EMACDMARIS_TI              (1 << 0)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacdmaopmode_values EMAC_EMACDMAOPMODE Values
@@ -1144,7 +1146,7 @@ full-duplex mode) */
 #define EMAC_EMACDMAOPMODE_OSF          (1 << 2)
 /** Start or Stop Receive */
 #define EMAC_EMACDMAOPMODE_SR           (1 << 1)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacdmaim_values EMAC_EMACDMAIM Values
  * @ingroup ethernet_registers
@@ -1180,7 +1182,7 @@ full-duplex mode) */
 #define EMAC_EMACDMAIM_TSE              (1 << 1)
 /** Transmit Interrupt Enable */
 #define EMAC_EMACDMAIM_TIE              (1 << 0)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacmfboc_values EMAC_EMACMFBOC Values
@@ -1197,7 +1199,7 @@ full-duplex mode) */
 #define EMAC_EMACMFBOC_MISCNTOVF        (1 << 16)
 /**  */
 #define EMAC_EMACMFBOC_MISFRMCNT        (0xFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacrxintwdt_values EMAC_EMACRXINTWDT Values
  * @ingroup ethernet_registers
@@ -1205,7 +1207,7 @@ full-duplex mode) */
 @{*/
 /** Receive Interrupt Watchdog Timer Count */
 #define EMAC_EMACRXINTWDT_RIWT          (0xFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emachostxdesc_values EMAC_EMACHOSTXDESC Values
  * @ingroup ethernet_registers
@@ -1213,7 +1215,7 @@ full-duplex mode) */
 @{*/
 /** Host Transmit Descriptor Address Pointer */
 #define EMAC_EMACHOSTXDESC_CURTXDESC    (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emachosrxdesc_values EMAC_EMACHOSRXDESC Values
  * @ingroup ethernet_registers
@@ -1221,7 +1223,7 @@ full-duplex mode) */
 @{*/
 /** Host Receive Descriptor Address Pointer */
 #define EMAC_EMACHOSRXDESC_CURRXDESC    (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emachostxba_values EMAC_EMACHOSTXBA Values
  * @ingroup ethernet_registers
@@ -1229,7 +1231,7 @@ full-duplex mode) */
 @{*/
 /** Host Transmit Buffer Address Pointer */
 #define EMAC_EMACHOSTXBA_CURTXBUFA      (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emachosrxba_values EMAC_EMACHOSRXBA Values
  * @ingroup ethernet_registers
@@ -1237,7 +1239,7 @@ full-duplex mode) */
 @{*/
 /** Host Receive Buffer Address Pointer */
 #define EMAC_EMACHOSRXBA_CURRXBUFA      (0xFFFFFFFF)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emacpp_values EMAC_EMACPP Values
  * @ingroup ethernet_registers
@@ -1253,7 +1255,7 @@ full-duplex mode) */
 #define EMAC_EMACPP_PHYTYPE             (0x7)
 /** Ethernet PHY Type - MSP432E4 class PHY */
 #define EMAC_EMACPP_PHYTYPE_MSP432E4    (0x3)
-/*@}*/
+/**@}*/
 
 /* TODO Вернуться сюда позже */
 /** @defgroup emac_emacpc_values EMAC_EMACPC Values
@@ -1316,7 +1318,7 @@ full-duplex mode) */
 #define EMAC_EMACPC_ANMODE              (0x3 << EMAC_EMACPC_ANMODE_SHIFT)
 /** Ethernet PHY Hold */
 #define EMAC_EMACPC_PHYHOLD             (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_emaccc_values EMAC_EMACCC Values
  * @ingroup ethernet_registers
@@ -1328,7 +1330,7 @@ full-duplex mode) */
 #define EMAC_EMACCC_POL                 (1 << 17)
 /** EN0RREF_CLK Signal Enable */
 #define EMAC_EMACCC_CLKEN               (1 << 16)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_ephyris_values EMAC_EPHYRIS Values
  * @ingroup ethernet_registers
@@ -1336,7 +1338,7 @@ full-duplex mode) */
 @{*/
 /** Ethernet PHY Raw Interrupt Status */
 #define EMAC_EPHYRIS_INT                (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_ephyim_values EMAC_EPHYIM Values
  * @ingroup ethernet_registers
@@ -1344,7 +1346,7 @@ full-duplex mode) */
 @{*/
 /** Ethernet PHY Interrupt Mask */
 #define EMAC_EPHYIM_INT                 (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup emac_ephymisc_values EMAC_EPHYMISC Values
  * @ingroup ethernet_registers
@@ -1352,7 +1354,7 @@ full-duplex mode) */
 @{*/
 /** Ethernet PHY Status and Clear register */
 #define EMAC_EPHYMISC_INT               (1 << 0)
-/*@}*/
+/**@}*/
 
 /** @defgroup ethernet_descriptors Ethernet Descriptors
  * @ingroup ethernet_defines
@@ -1376,7 +1378,7 @@ full-duplex mode) */
 #define ETH_DES6(base)          ETH_DES(6, base)
 /** Ethernet Extended Descriptor 7 */
 #define ETH_DES7(base)          ETH_DES(7, base)
-/*@}*/
+/**@}*/
 
 /** @defgroup ethernet_descriptor_sizes Ethernet Descriptor Sizes
  * @ingroup ethernet_descriptors
@@ -1384,7 +1386,7 @@ full-duplex mode) */
 @{*/
 #define ETH_DES_STD_SIZE        16
 #define ETH_DES_EXT_SIZE        32
-/*@}*/
+/**@}*/
 
 /** @defgroup eth_tdes0 ETH_TDES0 Values
  * @ingroup ethernet_descriptors
@@ -1452,87 +1454,143 @@ full-duplex mode) */
 #define ETH_TDES0_IC            (1 << 30)
 /** Own Bit */
 #define ETH_TDES0_OWN           (1 << 31)
-/*@}*/
+/**@}*/
 
 /** @defgroup eth_tdes1 ETH_TDES1 Values
  * @ingroup ethernet_descriptors
  * @brief Ethernet TX Descriptor 1 Values
 @{*/
+/**  */
 #define ETH_TDES1_TBS1_SHIFT    (0)
+/**  */
 #define ETH_TDES1_TBS1          (0x1FFF << ETH_TDES1_TBS1_SHIFT)
+/**  */
 #define ETH_TDES1_TBS2_SHIFT    (16)
+/**  */
 #define ETH_TDES1_TBS2          (0x1FFF << ETH_TDES1_TBS1_SHIFT)
-/*@}*/
+/**@}*/
 
 /** @defgroup eth_rdes0 ETH_RDES0 Values
  * @ingroup ethernet_descriptors
  * @brief Ethernet RX Descriptor 0 Values
 @{*/
+/**  */
 #define ETH_RDES0_PCE           (1 << 0)
+/**  */
 #define ETH_RDES0_ESA           (1 << 0)
+/**  */
 #define ETH_RDES0_CE            (1 << 1)
+/**  */
 #define ETH_RDES0_DE            (1 << 2)
+/**  */
 #define ETH_RDES0_RE            (1 << 3)
+/**  */
 #define ETH_RDES0_RWT           (1 << 4)
+/**  */
 #define ETH_RDES0_FT            (1 << 5)
+/**  */
 #define ETH_RDES0_LCO           (1 << 6)
+/**  */
 #define ETH_RDES0_IPHCE         (1 << 7)
+/**  */
 #define ETH_RDES0_TSV           (1 << 7)
+/**  */
 #define ETH_RDES0_LS            (1 << 8)
+/**  */
 #define ETH_RDES0_FS            (1 << 9)
+/**  */
 #define ETH_RDES0_VLAN          (1 << 10)
+/**  */
 #define ETH_RDES0_OE            (1 << 11)
+/**  */
 #define ETH_RDES0_LE            (1 << 12)
+/**  */
 #define ETH_RDES0_SAF           (1 << 13)
+/**  */
 #define ETH_RDES0_DCE           (1 << 14)
+/**  */
 #define ETH_RDES0_ES            (1 << 15)
+/**  */
 #define ETH_RDES0_FL_SHIFT      (16)
+/**  */
 #define ETH_RDES0_FL            (0x3FFF << ETH_RDES0_FL_SHIFT)
+/**  */
 #define ETH_RDES0_AFM           (1 << 30)
+/**  */
 #define ETH_RDES0_OWN           (1 << 31)
-/*@}*/
+/**@}*/
 
 /** @defgroup eth_rdes1 ETH_RDES1 Values
  * @ingroup ethernet_descriptors
  * @brief Ethernet RX Descriptor 1 Values
 @{*/
+/**  */
 #define ETH_RDES1_RBS1_SHIFT    (0)
+/**  */
 #define ETH_RDES1_RBS1          (0x1FFF << ETH_RDES1_RBS1_SHIFT)
+/**  */
 #define ETH_RDES1_RCH           (1 << 14)
+/**  */
 #define ETH_RDES1_RER           (1 << 15)
+/**  */
 #define ETH_RDES1_RBS2_SHIFT    (16)
+/**  */
 #define ETH_RDES1_RBS2          (0x1FFF << ETH_RDES1_RBS2_SHIFT)
+/**  */
 #define ETH_RDES1_DIC           (1 << 31)
-/*@}*/
+/**@}*/
 
 /** @defgroup eth_rdes4 ETH_RDES4 Values
  * @ingroup ethernet_descriptors
  * @brief Ethernet RX Descriptor 4 Values
 @{*/
+/**  */
 #define ETH_RDES4_IPPT_SHIFT    (0)
+/**  */
 #define ETH_RDES4_IPPT          (0x7 << ETH_RDES4_IPPT_SHIFT)
+/**  */
 #define ETH_RDES4_IPPT_UNKNOWN  (0x0 << ETH_RDES4_IPPT_SHIFT)
+/**  */
 #define ETH_RDES4_IPPT_UDP      (0x1 << ETH_RDES4_IPPT_SHIFT)
+/**  */
 #define ETH_RDES4_IPPT_TCP      (0x2 << ETH_RDES4_IPPT_SHIFT)
+/**  */
 #define ETH_RDES4_IPPT_ICMP     (0x3 << ETH_RDES4_IPPT_SHIFT)
+/**  */
 #define ETH_RDES4_IPHE          (1 << 3)
+/**  */
 #define ETH_RDES4_IPPE          (1 << 4)
+/**  */
 #define ETH_RDES4_IPCB          (1 << 5)
+/**  */
 #define ETH_RDES4_IPV4PR        (1 << 6)
+/**  */
 #define ETH_RDES4_IPV6PR        (1 << 7)
+/**  */
 #define ETH_RDES4_PMT_SHIFT         (8)
+/**  */
 #define ETH_RDES4_PMT               (0x0F << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_NO            (0x00 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_SYNC          (0x01 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_FOLLOW        (0x02 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_DLYRQ         (0x03 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_DLYRSP        (0x04 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_PDLYRQ        (0x05 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_PDLYRSP       (0x06 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PMT_PDLYRSPFUP    (0x07 << ETH_RDES4_PMT_SHIFT)
+/**  */
 #define ETH_RDES4_PFT               (1 << 12)
+/**  */
 #define ETH_RDES4_PV                (1 << 13)
-/*@}*/
+/**@}*/
 
 enum eth_clk {
     ETH_CLK_020_035MHZ = EMAC_EMACMIIADDR_CR_SYSCLK_DIV_16,

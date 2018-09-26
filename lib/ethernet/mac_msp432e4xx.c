@@ -126,20 +126,20 @@ void eth_desc_init(uint8_t *buf, uint32_t nTx, uint32_t nRx, uint32_t cTx,
  */
 bool eth_tx(uint8_t *ppkt, uint32_t n)
 {
-	if (ETH_DES0(TxBD) & ETH_TDES0_OWN) {
-		return false;
-	}
+    if (ETH_DES0(TxBD) & ETH_TDES0_OWN) {
+        return false;
+    }
 
-	memcpy((void *)ETH_DES2(TxBD), ppkt, n);
+    memcpy((void *)ETH_DES2(TxBD), ppkt, n);
 
-	ETH_DES1(TxBD) = n & ETH_TDES1_TBS1;
-	ETH_DES0(TxBD) |= ETH_TDES0_LS | ETH_TDES0_FS | ETH_TDES0_OWN;
-	TxBD = ETH_DES3(TxBD);
+    ETH_DES1(TxBD) = n & ETH_TDES1_TBS1;
+    ETH_DES0(TxBD) |= ETH_TDES0_LS | ETH_TDES0_FS | ETH_TDES0_OWN;
+    TxBD = ETH_DES3(TxBD);
 
-	if (ETH_DMASR & ETH_DMASR_TBUS) {
-		ETH_DMASR = ETH_DMASR_TBUS;
-		ETH_DMATPDR = 0;
-	}
+    if(EMAC_EMACDMARIS & EMAC_EMACDMARIS_TU) {
+        EMAC_EMACDMARIS = EMAC_EMACDMARIS_TU;
+        EMAC_EMACTXPOLLD = 0;
+    }
 
 	return true;
 }
@@ -154,36 +154,36 @@ bool eth_tx(uint8_t *ppkt, uint32_t n)
  */
 bool eth_rx(uint8_t *ppkt, uint32_t *len, uint32_t maxlen)
 {
-	bool fs = false;
-	bool ls = false;
-	bool overrun = false;
-	uint32_t l = 0;
+    bool fs = false;
+    bool ls = false;
+    bool overrun = false;
+    uint32_t l = 0;
 
-	while (!(ETH_DES0(RxBD) & ETH_RDES0_OWN) && !ls) {
-		l = (ETH_DES0(RxBD) & ETH_RDES0_FL) >> ETH_RDES0_FL_SHIFT;
+    while (!(ETH_DES0(RxBD) & ETH_RDES0_OWN) && !ls) {
+        l = (ETH_DES0(RxBD) & ETH_RDES0_FL) >> ETH_RDES0_FL_SHIFT;
 
-		fs |= ETH_DES0(RxBD) & ETH_RDES0_FS;
-		ls |= ETH_DES0(RxBD) & ETH_RDES0_LS;
-		/* frame buffer overrun ?*/
-		overrun |= fs && (maxlen < l);
+        fs |= ETH_DES0(RxBD) & ETH_RDES0_FS;
+        ls |= ETH_DES0(RxBD) & ETH_RDES0_LS;
+        /* frame buffer overrun ?*/
+        overrun |= fs && (maxlen < l);
 
-		if (fs && !overrun) {
-			memcpy(ppkt, (void *)ETH_DES2(RxBD), l);
-			ppkt += l;
-			*len += l;
-			maxlen -= l;
-		}
+        if (fs && !overrun) {
+            memcpy(ppkt, (void *)ETH_DES2(RxBD), l);
+            ppkt += l;
+            *len += l;
+            maxlen -= l;
+        }
 
-		ETH_DES0(RxBD) = ETH_RDES0_OWN;
-		RxBD = ETH_DES3(RxBD);
-	}
+        ETH_DES0(RxBD) = ETH_RDES0_OWN;
+        RxBD = ETH_DES3(RxBD);
+    }
 
-	if (ETH_DMASR & ETH_DMASR_RBUS) {
-		ETH_DMASR = ETH_DMASR_RBUS;
-		ETH_DMARPDR = 0;
-	}
+    if(EMAC_EMACDMARIS & EMAC_EMACDMARIS_RU) {
+        EMAC_EMACDMARIS = EMAC_EMACDMARIS_RU;
+        EMAC_EMACRXPOLLD = 0;
+    }
 
-	return fs && ls && !overrun;
+    return fs && ls && !overrun;
 }
 
 /*---------------------------------------------------------------------------*/
@@ -214,36 +214,24 @@ void eth_init(uint8_t phy, enum eth_clk clock)
 
     EMAC_EMACCFG = EMAC_EMACCFG_CST | EMAC_EMACCFG_FES | EMAC_EMACCFG_DUPM |
                    EMAC_EMACCFG_ACS | EMAC_EMACCFG_DR;
-   /* ETH_MACCR = ETH_MACCR_CSTF | ETH_MACCR_FES | ETH_MACCR_DM |
-                ETH_MACCR_APCS | ETH_MACCR_RD;*/
 
     EMAC_EMACFRAMEFLTR = EMAC_EMACFRAMEFLTR_RA | EMAC_EMACFRAMEFLTR_PR;
-    /*ETH_MACFFR = ETH_MACFFR_RA | ETH_MACFFR_PM;*/
 
     EMAC_EMACHASHTBLH = 0; /* pass all frames */
     EMAC_EMACHASHTBLL = 0;
-    /*ETH_MACHTHR = 0;
-    ETH_MACHTLR = 0;*/
 
     EMAC_EMACFLOWCTL = (0x100 << EMAC_EMACFLOWCTL_PT_SHIFT);
-    /*ETH_MACFCR = (0x100 << ETH_MACFCR_PT_SHIFT);*/
 
     EMAC_EMACVLANTG = 0;
-    /*ETH_MACVLANTR = 0;*/
 
-    EMAC_EMACDMAOPMODE = EMAC_EMACDMAOPMODE_DT | EMAC_EMACDMAOPMODE_RSF |
+    EMAC_EMACDMAOPMODE = EMAC_EMACDMAOPMODE_DT  | EMAC_EMACDMAOPMODE_RSF |
                          EMAC_EMACDMAOPMODE_DFF | EMAC_EMACDMAOPMODE_TSF |
                          EMAC_EMACDMAOPMODE_FEF | EMAC_EMACDMAOPMODE_OSF;
-    /*ETH_DMAOMR = ETH_DMAOMR_DTCEFD | ETH_DMAOMR_RSF | ETH_DMAOMR_DFRF |
-                 ETH_DMAOMR_TSF | ETH_DMAOMR_FEF | ETH_DMAOMR_OSF;*/
 
     EMAC_EMACDMABUSMOD = EMAC_EMACDMABUSMOD_AAL | EMAC_EMACDMABUSMOD_FB |
                          (32 << EMAC_EMACDMABUSMOD_RPBL_SHIFT) |
                          (32 << EMAC_EMACDMABUSMOD_PBL_SHIFT) |
                          EMAC_EMACDMABUSMOD_PR_2_1 | EMAC_EMACDMABUSMOD_USP;
-    /*ETH_DMABMR = ETH_DMABMR_AAB | ETH_DMABMR_FB |
-            (32 << ETH_DMABMR_RDP_SHIFT) | (32 << ETH_DMABMR_PBL_SHIFT) |
-            ETH_DMABMR_PM_2_1 | ETH_DMABMR_USP;*/
 }
 
 /*---------------------------------------------------------------------------*/
