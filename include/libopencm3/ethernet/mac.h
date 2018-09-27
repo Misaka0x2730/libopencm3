@@ -37,6 +37,8 @@
 #       include <libopencm3/ethernet/mac_stm32fxx7.h>
 #elif defined(STM32F4)
 #       include <libopencm3/ethernet/mac_stm32fxx7.h>
+#elif defined(MSP432E4)
+#       include <libopencm3/ethernet/mac_msp432e4xx.h>
 #else
 #       error "stm32 family not defined."
 #endif

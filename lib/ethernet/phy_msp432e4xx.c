@@ -1,3 +1,7 @@
+#include <libopencm3/ethernet/mac.h>
+#include <libopencm3/ethernet/phy.h>
+#include <libopencm3/ethernet/phy_msp432e4xx.h>
+
 /** @brief Get the current link status
  *
  * Retrieve the link speed and duplex status of the link.
@@ -7,7 +11,24 @@
  */
 enum phy_status phy_link_status(uint8_t phy)
 {
-    return eth_smi_read(phy, KSZ80X1_CR1) & 0x07;
+    u8_t reg_sts = eth_smi_read(phy, PHY_MSP432_EPHYSTS);
+
+    if (!(reg_sts & PHY_MSP432_EPHYSTS_LINK))
+        return LINK_DOWN;
+
+    if(reg_sts & PHY_MSP432_EPHYSTS_DUPLEX) {
+        if(reg_sts & PHY_MSP432_EPHYSTS_SPEED) {
+            return LINK_FD_10M;
+        } else {
+            return LINK_FD_100M;
+        }
+    } else {
+        if(reg_sts & PHY_MSP432_EPHYSTS_SPEED) {
+            return LINK_HD_10M;
+        } else {
+            return LINK_HD_100M;
+        }
+    }
 }
 
 /*---------------------------------------------------------------------------*/
@@ -22,8 +43,7 @@ void phy_autoneg_force(uint8_t phy, enum phy_status mode)
 {
     uint16_t bst = 0;
 
-    if ((mode == LINK_FD_10M) || (mode == LINK_FD_100M) ||
-        (mode == LINK_FD_1000M) || (mode == LINK_FD_10000M)) {
+    if ((mode == LINK_FD_10M) || (mode == LINK_FD_100M)) {
         bst |= PHY_REG_BCR_FD;
     }
 
