@@ -113,7 +113,6 @@
 #define PHY_MSP432_EPHYBMSR_EXTEN           (1 << 0)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyid1_values PHY_MSP432_EPHYID1 Values
  * @brief Integrated PHY Identifier Register 1 Register Values
 @{*/
@@ -121,7 +120,6 @@
 #define PHY_MSP432_EPHYID1_OUIMSB           (0xFFFF)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyid2_values PHY_MSP432_EPHYID2 Values
  * @brief Integrated PHY Identifier Register 2 Register Values
 @{*/
@@ -137,7 +135,6 @@
 #define PHY_MSP432_EPHYID2_MDLREV           (0xF)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyana_values PHY_MSP432_EPHYANA Values
  * @brief Integrated PHY Auto-Negotiation Advertisement Register Values
 @{*/
@@ -159,8 +156,10 @@
 #define PHY_MSP432_EPHYANA_10BTFD           (1 << 6)
 /** 10Base-T Support */
 #define PHY_MSP432_EPHYANA_10BT             (1 << 5)
-/**  */
-#define PHY_MSP432_EPHYANA_SELECT           (0x1F)
+/** Protocol Selection Mask */
+#define PHY_MSP432_EPHYANA_SELECT_MASK      (0x1F)
+/** Protocol Selection */
+#define PHY_MSP432_EPHYANA_SELECT(x)        (x & PHY_MSP432_EPHYANA_SELECT_MASK)
 /**@}*/
 
 /* TODO */
@@ -206,7 +205,6 @@
 #define PHY_MSP432_EPHYANER_LPANABLE        (1 << 0)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyannptr_values PHY_MSP432_EPHYANNPTR Values
  * @brief Integrated PHY Auto-Negotiation Next Page TX Register Values
 @{*/
@@ -218,11 +216,12 @@
 #define PHY_MSP432_EPHYANNPTR_ACK2          (1 << 12)
 /** Toggle */
 #define PHY_MSP432_EPHYANNPTR_TOGTX         (1 << 11)
+/** Code Mask */
+#define PHY_MSP432_EPHYANNPTR_CODE_MASK     (0x7FF)
 /** Code */
-#define PHY_MSP432_EPHYANNPTR_CODE          (0x7FF)
+#define PHY_MSP432_EPHYANNPTR_CODE(x)      (x & PHY_MSP432_EPHYANNPTR_CODE_MASK)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyanlnptr_values PHY_MSP432_EPHYANLNPTR Values
  * @brief Integrated PHY Auto-Negotiation Link Partner Ability Next Page
  *        Register Values
@@ -257,12 +256,18 @@
 #define PHY_MSP432_EPHYCFG1_RAMDIX          (1 << 5)
 /** Fast Auto Negotiation Enable */
 #define PHY_MSP432_EPHYCFG1_FASTANEN        (1 << 4)
-/**  */
+/** Fast Auto-Negotiation Select Configuration Shift */
 #define PHY_MSP432_EPHYCFG1_FANSEL_SHIFT    (2)
-/**  */
+/** Fast Auto-Negotiation Select Configuration */
 #define PHY_MSP432_EPHYCFG1_FANSEL     (0x3 << PHY_MSP432_EPHYCFG1_FANSEL_SHIFT)
+/** Fast Auto-Negotiation Select Configuration - Break Link Timer: 80 ms */
+#define PHY_MSP432_EPHYCFG1_FANSEL_80MS   (0x0)
+/** Fast Auto-Negotiation Select Configuration - Break Link Timer: 120 ms */
+#define PHY_MSP432_EPHYCFG1_FANSEL_120MS  (0x1 << PHY_MSP432_EPHYCFG1_FANSEL_SHIFT)
+/** Fast Auto-Negotiation Select Configuration - Break Link Timer: 240 ms */
+#define PHY_MSP432_EPHYCFG1_FANSEL_240MS  (0x2 << PHY_MSP432_EPHYCFG1_FANSEL_SHIFT)
 /** FAST RXDV Detection */
-#define PHY_MSP432_EPHYCFG1_FRXDVDET        (1 << 1)
+#define PHY_MSP432_EPHYCFG1_FRXDVDET      (1 << 1)
 /**@}*/
 
 /** @defgroup phy_msp432_ephycfg2_values PHY_MSP432_EPHYCFG2 Values
@@ -282,16 +287,23 @@
 #define PHY_MSP432_EPHYCFG2_ODDNDETDIS      (1 << 1)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephycfg3_values PHY_MSP432_EPHYCFG3 Values
  * @brief Integrated PHY Configuration 3 Register Values
 @{*/
 /** Polarity Swap */
-#define PHY_MSP432_EPHYCFG3_POLSWAP         (1 << 7)
+#define PHY_MSP432_EPHYCFG3_POLSWAP                        (1 << 7)
 /** MDI/MDIX Swap */
-#define PHY_MSP432_EPHYCFG3_MDIMDIXS        (1 << 6)
+#define PHY_MSP432_EPHYCFG3_MDIMDIXS                       (1 << 6)
 /**  */
-#define PHY_MSP432_EPHYCFG3_FLDWNM          (0x1F)
+#define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_SYNC               (1 << 4)
+/**  */
+#define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_RX_ERROR           (1 << 3)
+/**  */
+#define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_MLT3_ERROR         (1 << 2)
+/**  */
+#define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_LOW_SNR            (1 << 1)
+/**  */
+#define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_SIGNAL_ENERGY_LOSS (1 << 0)
 /**@}*/
 
 /* TODO */
