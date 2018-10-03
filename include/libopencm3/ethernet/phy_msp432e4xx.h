@@ -116,22 +116,22 @@
 /** @defgroup phy_msp432_ephyid1_values PHY_MSP432_EPHYID1 Values
  * @brief Integrated PHY Identifier Register 1 Register Values
 @{*/
-/**  */
+/** OUI Most Significant Bits */
 #define PHY_MSP432_EPHYID1_OUIMSB           (0xFFFF)
 /**@}*/
 
 /** @defgroup phy_msp432_ephyid2_values PHY_MSP432_EPHYID2 Values
  * @brief Integrated PHY Identifier Register 2 Register Values
 @{*/
-/**  */
+/** OUI Least Significant Bits Shift */
 #define PHY_MSP432_EPHYID2_OUILSB_SHIFT     (10)
-/**  */
+/** OUI Least Significant Bits */
 #define PHY_MSP432_EPHYID2_OUILSB     (0x3F << PHY_MSP432_EPHYID2_OUILSB_SHIFT)
-/**  */
+/** Vendor Model Number Shift */
 #define PHY_MSP432_EPHYID2_VNDRMDL_SHIFT    (10)
-/**  */
+/** Vendor Model Number */
 #define PHY_MSP432_EPHYID2_VNDRMDL    (0x3F << PHY_MSP432_EPHYID2_VNDRMDL_SHIFT)
-/**  */
+/** Model Revision Number */
 #define PHY_MSP432_EPHYID2_MDLREV           (0xF)
 /**@}*/
 
@@ -294,44 +294,45 @@
 #define PHY_MSP432_EPHYCFG3_POLSWAP                        (1 << 7)
 /** MDI/MDIX Swap */
 #define PHY_MSP432_EPHYCFG3_MDIMDIXS                       (1 << 6)
-/**  */
+/** Fast Link Down Mode - Drop the link due to descrambler sync loss */
 #define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_SYNC               (1 << 4)
-/**  */
+/** Fast Link Down Mode - Drop the link based on RX Error count */
 #define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_RX_ERROR           (1 << 3)
-/**  */
+/** Fast Link Down Mode - Drop the link based on MLT3 Errors count */
 #define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_MLT3_ERROR         (1 << 2)
-/**  */
+/** Fast Link Down Mode - Drop the link based on Low SNR Threshold */
 #define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_LOW_SNR            (1 << 1)
-/**  */
+/** Fast Link Down Mode - Drop the link based on Signal/Energy loss indication*/
 #define PHY_MSP432_EPHYCFG3_FLDWNM_DROP_SIGNAL_ENERGY_LOSS (1 << 0)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyregctl_values PHY_MSP432_EPHYREGCTL Values
  * @brief Integrated PHY Register Control Register Values
 @{*/
-/**  */
+/** Function Shift */
 #define PHY_MSP432_EPHYREGCTL_FUNC_SHIFT    (14)
-/**  */
+/** Function */
 #define PHY_MSP432_EPHYREGCTL_FUNC     (0x3 << PHY_MSP432_EPHYREGCTL_FUNC_SHIFT)
-/**  */
+/** Function - Address */
 #define PHY_MSP432_EPHYREGCTL_FUNC_ADDRESS      (0x0)
-/**  */
+/** Function - Data, no post increment */
 #define PHY_MSP432_EPHYREGCTL_FUNC_DATA_NO_INC  (0x1 << PHY_MSP432_EPHYREGCTL_FUNC_SHIFT)
-/**  */
+/** Function - Data, post increment on read and write */
 #define PHY_MSP432_EPHYREGCTL_FUNC_DATA_INC_RW  (0x2 << PHY_MSP432_EPHYREGCTL_FUNC_SHIFT)
-/**  */
+/** Function - Data, post increment on write only */
 #define PHY_MSP432_EPHYREGCTL_FUNC_DATA_INC_WO  (0x3 << PHY_MSP432_EPHYREGCTL_FUNC_SHIFT)
+/** Device Address Mask*/
+#define PHY_MSP432_EPHYREGCTL_DEVAD_MASK        (0x1F)
+/** Device Address */
+#define PHY_MSP432_EPHYREGCTL_DEVAD(x)    (x & PHY_MSP432_EPHYREGCTL_DEVAD_MASK)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyaddar_values PHY_MSP432_EPHYADDAR Values
  * @brief Integrated PHY Address or Data Register Values
 @{*/
-/**  */
+/** Address or Data */
 #define PHY_MSP432_EPHYADDAR_ADDRDATA       (0xFFFF)
 /**@}*/
-
 
 /** @defgroup phy_msp432_ephysts_values PHY_MSP432_EPHYSTS Values
  * @brief Integrated PHY Status Register Values
@@ -376,31 +377,31 @@
 #define PHY_MSP432_EPHYSCR_DISCLK           (1 << 15)
 /** Power Saving Modes Enable */
 #define PHY_MSP432_EPHYSCR_PSEN             (1 << 14)
-/**  */
+/** Power Saving Modes Shift */
 #define PHY_MSP432_EPHYSCR_PSMODE_SHIFT     (12)
-/**  */
+/** Power Saving Modes */
 #define PHY_MSP432_EPHYSCR_PSMODE       (0x3 << PHY_MSP432_EPHYSCR_PSMODE_SHIFT)
-/**  */
+/** Power Saving Mode - Normal */
 #define PHY_MSP432_EPHYSCR_PSMODE_NORMAL    (0x0)
-/**  */
+/** Power Saving Mode - IEEE Power DownLow Power mode */
 #define PHY_MSP432_EPHYSCR_PSMODE_DL        (0x1 << PHY_MSP432_EPHYSCR_PSMODE_SHIFT)
-/**  */
+/** Power Saving Mode - Active SleepLow Power Active Wake-On-LAN (WOL) mode */
 #define PHY_MSP432_EPHYSCR_PSMODE_ACTIVE_SL (0x2 << PHY_MSP432_EPHYSCR_PSMODE_SHIFT)
-/**  */
+/** Power Saving Mode - Passive SleepLow Power WOL mode */
 #define PHY_MSP432_EPHYSCR_PSMODE_PASSIVE_SL (0x3 << PHY_MSP432_EPHYSCR_PSMODE_SHIFT)
 /** Scrambler Bypass */
 #define PHY_MSP432_EPHYSCR_SBPYASS          (1 << 11)
-/**  */
+/** Loopback FIFO Depth Shift */
 #define PHY_MSP432_EPHYSCR_LBFIFO_SHIFT     (8)
-/**  */
+/** Loopback FIFO Depth */
 #define PHY_MSP432_EPHYSCR_LBFIFO       (0x3 << PHY_MSP432_EPHYSCR_LBFIFO_SHIFT)
-/**  */
+/** Loopback FIFO Depth - Four nibble FIFO */
 #define PHY_MSP432_EPHYSCR_LBFIFO_4     (0x0)
-/**  */
+/** Loopback FIFO Depth - Five nibble FIFO */
 #define PHY_MSP432_EPHYSCR_LBFIFO_5     (0x1 << PHY_MSP432_EPHYSCR_LBFIFO_SHIFT)
-/**  */
+/** Loopback FIFO Depth - Six nibble FIFO */
 #define PHY_MSP432_EPHYSCR_LBFIFO_6     (0x2 << PHY_MSP432_EPHYSCR_LBFIFO_SHIFT)
-/**  */
+/** Loopback FIFO Depth - Eight nibble FIFO */
 #define PHY_MSP432_EPHYSCR_LBFIFO_8     (0x3 << PHY_MSP432_EPHYSCR_LBFIFO_SHIFT)
 /** Collision in Full-Duplex Mode */
 #define PHY_MSP432_EPHYSCR_COLFDM       (1 << 4)
@@ -472,23 +473,20 @@
 #define PHY_MSP432_EPHYMISR2_JABBEREN   (1 << 0)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyfcscr_values PHY_MSP432_PHYFCSCR Values
  * @brief Integrated PHY False Carrier Sense Counter Register Values
 @{*/
-/**  */
+/** False Carrier Event Counter */
 #define PHY_MSP432_EPHYFCSCR_FCSCNT         (0xFF)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyrxercnt_values PHY_MSP432_EPHYRXERCNT Values
  * @brief Integrated PHY Receive Error Count Register Values
 @{*/
-/**  */
+/** Receive Error Count */
 #define PHY_MSP432_EPHYRXERCNT_RXERRCNT     (0xFFFF)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephybistcr_values PHY_MSP432_EPHYBISTCR Values
  * @brief Integrated PHY BIST Control Register Values
 @{*/
@@ -508,35 +506,34 @@
 #define PHY_MSP432_EPHYBISTCR_PWRMODE           (1 << 8)
 /** Transmit Data in MII Loopback Mode */
 #define PHY_MSP432_EPHYBISTCR_TXMIILB           (1 << 6)
-/**  */
+/** Loopback Mode Select */
 #define PHY_MSP432_EPHYBISTCR_LBMODE            (0x1F)
-/**  */
+/** Loopback Mode Select - Near-end loopback: PCS Input Loopback */
 #define PHY_MSP432_EPHYBISTCR_LBMODE_NE_PCS_IN  (0x1)
-/**  */
+/** Loopback Mode Select - Near-end loopback: PCS Output Loopback */
 #define PHY_MSP432_EPHYBISTCR_LBMODE_NE_PCS_OUT (0x2)
-/**  */
+/** Loopback Mode Select - Near-end loopback: Digital Loopback */
 #define PHY_MSP432_EPHYBISTCR_LBMODE_NE_DL      (0x4)
-/**  */
+/** Loopback Mode Select - Near-end loopback: Analog Loopback */
 #define PHY_MSP432_EPHYBISTCR_LBMODE_NE_AL      (0x8)
-/**  */
+/** Loopback Mode Select - Far-end Loopback: Reverse Loopback */
 #define PHY_MSP432_EPHYBISTCR_LBMODE_FE_RL      (0x10)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyledcr_values PHY_MSP432_EPHYLEDCR Values
  * @brief Integrated PHY LED Control Register Values
 @{*/
-/**  */
+/** LED Blinking Rate Shift */
 #define PHY_MSP432_EPHYLEDCR_BLINKRATE_SHIFT    (9)
-/**  */
+/** LED Blinking Rate */
 #define PHY_MSP432_EPHYLEDCR_BLINKRATE      (0x3 << PHY_MSP432_EPHYLEDCR_BLINKRATE_SHIFT)
-/**  */
+/** LED Blinking Rate - 20 Hz */
 #define PHY_MSP432_EPHYLEDCR_BLINKRATE_20HZ (0x0)
-/**  */
+/** LED Blinking Rate - 10 Hz */
 #define PHY_MSP432_EPHYLEDCR_BLINKRATE_10HZ (0x1 << PHY_MSP432_EPHYLEDCR_BLINKRATE_SHIFT)
-/**  */
+/** LED Blinking Rate - 5 Hz */
 #define PHY_MSP432_EPHYLEDCR_BLINKRATE_5HZ  (0x2 << PHY_MSP432_EPHYLEDCR_BLINKRATE_SHIFT)
-/**  */
+/** LED Blinking Rate - 2 Hz */
 #define PHY_MSP432_EPHYLEDCR_BLINKRATE_2HZ  (0x3 << PHY_MSP432_EPHYLEDCR_BLINKRATE_SHIFT)
 /**@}*/
 
@@ -557,17 +554,16 @@
 #define PHY_MSP432_EPHYCTL_BYPLEDSTRCH  (1 << 7)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephy10btsc_values PHY_MSP432_EPHY10BTSC Values
  * @brief Integrated PHY 10Base-T Status/Control Register Values
 @{*/
 /** Lower Receiver Threshold Enable */
 #define PHY_MSP432_EPHY10BTSC_RXTHEN    (1 << 13)
-/**  */
+/** Squelch Configuration Shift */
 #define PHY_MSP432_EPHY10BTSC_SQUELCH_SHIFT (9)
-/**  */
+/** Squelch Configuration Mask */
 #define PHY_MSP432_EPHY10BTSC_SQUELCH_MASK  (0xF)
-/**  */
+/** Squelch Configuration */
 #define PHY_MSP432_EPHY10BTSC_SQUELCH(x) (((x) & PHY_MSP432_EPHY10BTSC_SQUELCH_MASK) << PHY_MSP432_EPHY10BTSC_SQUELCH_SHIFT)
 /** Normal Link Pulse (NLP) Transmission Control */
 #define PHY_MSP432_EPHY10BTSC_NLPDIS    (1 << 7)
@@ -577,36 +573,43 @@
 #define PHY_MSP432_EPHY10BTSC_JABBERD   (1 << 0)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephybicsr1_values PHY_MSP432_EPHYBICSR1 Values
  * @brief Integrated PHY BIST Control and Status 1 Register Values
 @{*/
-/**  */
-#define PHY_MSP432_EPHYBICSR1_
-/**  */
-#define PHY_MSP432_EPHYBICSR1_
-/**  */
-#define PHY_MSP432_EPHYBICSR1_IPGLENGTH
+/** BIST Error Count Shift */
+#define PHY_MSP432_EPHYBICSR1_ERRCNT_SHIFT  (8)
+/** BIST Error Count */
+#define PHY_MSP432_EPHYBICSR1_ERRCNT        (0xFF << PHY_MSP432_EPHYBICSR1_ERRCNT_SHIFT)
+/** BIST IPG Length Mask */
+#define PHY_MSP432_EPHYBICSR1_IPGLENGTH_MASK (0xFF)
+/** BIST IPG Length */
+#define PHY_MSP432_EPHYBICSR1_IPGLENGTH(x)  ((x) & PHY_MSP432_EPHYBICSR1_IPGLENGTH_MASK)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephybicsr2_values PHY_MSP432_EPHYBICSR2 Values
  * @brief Integrated PHY BIST Control and Status 2 Register Values
 @{*/
-/**  */
-#define PHY_MSP432_EPHYBICSR2_PKTLENGTH (0x7FF)
+/** BIST Packet Length Mask */
+#define PHY_MSP432_EPHYBICSR2_PKTLENGTH_MASK (0x7FF)
+/** BIST Packet Length */
+#define PHY_MSP432_EPHYBICSR2_PKTLENGTH(x)   (x & 0x7FF)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephycdcr_values PHY_MSP432_EPHYCDCR Values
  * @brief Integrated PHY Cable Diagnostic Control Register Values
 @{*/
 /** Cable Diagnostic Process Start */
 #define PHY_MSP432_EPHYCDCR_START       (1 << 15)
-/**  */
-#define PHY_MSP432_EPHYCDCR_LINKQUAL
-/**  */
-#define PHY_MSP432_EPHYCDCR_
+/** Link Quality Indication Shift */
+#define PHY_MSP432_EPHYCDCR_LINKQUAL_SHIFT (8)
+/** Link Quality Indication */
+#define PHY_MSP432_EPHYCDCR_LINKQUAL       (0x3 << PHY_MSP432_EPHYCDCR_LINKQUAL_SHIFT)
+/** Link Quality Indication - Good Quality Link Indication */
+#define PHY_MSP432_EPHYCDCR_LINKQUAL_GOOD  (0x1 << PHY_MSP432_EPHYCDCR_LINKQUAL_SHIFT)
+/** Link Quality Indication - Mid- Quality Link Indication*/
+#define PHY_MSP432_EPHYCDCR_LINKQUAL_MID   (0x2 << PHY_MSP432_EPHYCDCR_LINKQUAL_SHIFT)
+/** Link Quality Indication - Poor Quality Link Indication*/
+#define PHY_MSP432_EPHYCDCR_LINKQUAL_POOR  (0x3 << PHY_MSP432_EPHYCDCR_LINKQUAL_SHIFT)
 /** Cable Diagnostic Process Done */
 #define PHY_MSP432_EPHYCDCR_DONE        (1 << 1)
 /** Cable Diagnostic Process Fail */
@@ -622,16 +625,73 @@
 #define PHY_MSP432_EPHYRCR_SWRESTART    (1 << 14)
 /**@}*/
 
-/* TODO */
 /** @defgroup phy_msp432_ephyledcfg_values PHY_MSP432_EPHYLEDCFG Values
  * @brief Integrated PHY LED Configuration Register Values
 @{*/
-/**  */
-#define PHY_MSP432_EPHYLEDCFG_LED2
-/**  */
-#define PHY_MSP432_EPHYLEDCFG_LED1
-/**  */
-#define PHY_MSP432_EPHYLEDCFG_LED0
+/** LED2 Configuration Shift */
+#define PHY_MSP432_EPHYLEDCFG_LED2_SHIFT (8)
+/** LED2 Configuration */
+#define PHY_MSP432_EPHYLEDCFG_LED2     (0xF << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - Link Ok */
+#define PHY_MSP432_EPHYLEDCFG_LED2_LINK_OK  (0x0)
+/** LED2 Configuration - RX/TX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED2_RX_TX_ACT (0x1 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - TX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED2_TX_ACT (0x2 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - RX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED2_RX_ACT (0x3 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - Collision */
+#define PHY_MSP432_EPHYLEDCFG_LED2_COL (0x4 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - 100-Base TX  */
+#define PHY_MSP432_EPHYLEDCFG_LED2_100B (0x5 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - 10-Base TX */
+#define PHY_MSP432_EPHYLEDCFG_LED2_10B (0x6 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - Full Duplex */
+#define PHY_MSP432_EPHYLEDCFG_LED2_FD (0x7 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED2 Configuration - Link OK/Blink on TX/RX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED2_LIN_OK_BLINK (0x8 << PHY_MSP432_EPHYLEDCFG_LED2_SHIFT)
+/** LED1 Configuration Shift */
+#define PHY_MSP432_EPHYLEDCFG_LED1_SHIFT (4)
+/** LED1 Configuration */
+#define PHY_MSP432_EPHYLEDCFG_LED1     (0xF << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - Link Ok */
+#define PHY_MSP432_EPHYLEDCFG_LED1_LINK_OK  (0x0)
+/** LED1 Configuration - RX/TX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED1_RX_TX_ACT (0x1 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - TX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED1_TX_ACT (0x2 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - RX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED1_RX_ACT (0x3 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - Collision */
+#define PHY_MSP432_EPHYLEDCFG_LED1_COL (0x4 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - 100-Base TX */
+#define PHY_MSP432_EPHYLEDCFG_LED1_100B (0x5 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - 10-Base TX */
+#define PHY_MSP432_EPHYLEDCFG_LED1_10B (0x6 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - Full Duplex */
+#define PHY_MSP432_EPHYLEDCFG_LED1_FD (0x7 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED1 Configuration - Link OK/Blink on TX/RX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED1_LIN_OK_BLINK (0x8 << PHY_MSP432_EPHYLEDCFG_LED1_SHIFT)
+/** LED0 Configuration */
+#define PHY_MSP432_EPHYLEDCFG_LED0              (0xF)
+/** LED0 Configuration - Link Ok */
+#define PHY_MSP432_EPHYLEDCFG_LED0_LINK_OK      (0x0)
+/** LED0 Configuration - RX/TX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED0_RX_TX_ACT    (0x1)
+/** LED0 Configuration - TX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED0_TX_ACT       (0x2)
+/** LED0 Configuration - RX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED0_RX_ACT       (0x3)
+/** LED0 Configuration - Collision */
+#define PHY_MSP432_EPHYLEDCFG_LED0_COL          (0x4)
+/** LED0 Configuration - 100-Base TX */
+#define PHY_MSP432_EPHYLEDCFG_LED0_100B         (0x5)
+/** LED0 Configuration - 10-Base TX */
+#define PHY_MSP432_EPHYLEDCFG_LED0_10B          (0x6)
+/** LED0 Configuration - Full Duplex */
+#define PHY_MSP432_EPHYLEDCFG_LED0_FD           (0x7)
+/** LED0 Configuration - Link OK/Blink on TX/RX Activity */
+#define PHY_MSP432_EPHYLEDCFG_LED0_LIN_OK_BLINK (0x8)
 /**@}*/
 
 #endif /* PHY_MSP432E4_H */
